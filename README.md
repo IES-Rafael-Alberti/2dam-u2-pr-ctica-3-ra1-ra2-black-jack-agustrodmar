@@ -5,7 +5,10 @@
 
 ### Objetivo:
 
-El objetivo de esta práctica es aplicar los conceptos de Jetpack Compose, Kotlin y programación orientada a objetos para desarrollar un juego de Blackjack en Android Studio. En esta versión, se introducirán dos modos de juego (2 jugadores y 1 jugador contra la máquina) y se implementarán clases adicionales para gestionar la baraja, las cartas y los jugadores.
+El objetivo de esta práctica es aplicar los conceptos de Jetpack Compose, Kotlin y programación
+orientada a objetos para desarrollar un juego de Blackjack en Android Studio. En esta versión,
+se introducirán dos modos de juego (2 jugadores y 1 jugador contra la máquina) y se implementarán
+clases adicionales para gestionar la baraja, las cartas y los jugadores.
 
 ### Requisitos Básicos:
 1. Interfaz Gráfica:

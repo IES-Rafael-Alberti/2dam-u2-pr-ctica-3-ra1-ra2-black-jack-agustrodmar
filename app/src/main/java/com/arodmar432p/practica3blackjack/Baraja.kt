@@ -47,7 +47,7 @@ object Baraja {
                 val idDrawable = context.resources.getIdentifier(nombreRecurso, "drawable", context.packageName)
 
                 // Añade la carta a la lista de cartas
-                // listaCartas.add(Carta(naipe, palo, puntosMin, puntosMax, idDrawable))
+                listaCartas.add(Carta(naipe, palo, puntosMin, puntosMax, idDrawable))
             }
         }
     }

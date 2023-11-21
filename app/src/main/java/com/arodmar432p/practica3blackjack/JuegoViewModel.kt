@@ -11,22 +11,43 @@ class JuegoViewModel(application: Application) : AndroidViewModel(application) {
 
     private var partida: Partida? = null
 
+    val baraja = Baraja
     init {
         iniciarPartida()
     }
 
     private fun iniciarPartida() {
-        // Resto del código...
-    }
+        // Crea una nueva baraja de cartas
+        baraja.crearBaraja(getApplication())
 
+        // Baraja las cartas
+        baraja.barajar()
+
+        // Crea un nuevo jugador y un nuevo crupier
+        val jugador = Jugador("Jugador")
+        val crupier = Jugador("Crupier")
+
+        // Crea una nueva partida con el jugador, el crupier y la baraja
+        partida = Partida(jugador, crupier, baraja)
+
+        // Actualiza el estado del juego
+        actualizarEstadoJuego()
+    }
     fun pedirCarta() {
         partida?.pedirCarta()
-        actualizarEstadoJuego()
+        if (partida?.jugador?.calcularPuntos()!! > 21) {
+            // El jugador ha perdido, termina la partida
+        } else {
+            actualizarEstadoJuego()
+        }
     }
 
     fun plantarse() {
-        partida?.plantarse()
+        while (partida?.crupier?.calcularPuntos()!! < 17) {
+            partida?.crupier?.añadirCarta(baraja.dameCarta())
+        }
         actualizarEstadoJuego()
+
     }
 
     // Resto del código...

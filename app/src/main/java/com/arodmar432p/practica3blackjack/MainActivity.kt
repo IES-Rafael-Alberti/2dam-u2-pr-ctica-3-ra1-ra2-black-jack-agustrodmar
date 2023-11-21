@@ -15,9 +15,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -150,7 +152,6 @@ fun MainMenu() {
     }
 }
 
-
 @Composable
 @Preview
 fun JuegoContraMaquina() {
@@ -198,21 +199,34 @@ fun JuegoContraMaquina() {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            LazyColumn {
+            LazyRow {
                 items(estadoJuego.partida?.jugador?.mano ?: emptyList()) { carta ->
                     val imagenCarta = painterResource(id = carta.idDrawable)
-                    Image(painter = imagenCarta, contentDescription = null)
+                    Image(painter = imagenCarta, contentDescription = null, modifier = Modifier.size(100.dp))
                 }
             }
 
-            LazyColumn {
-                items(estadoJuego.partida?.crupier?.mano ?: emptyList()) { carta ->
-                    val imagenCarta = if (carta == estadoJuego.partida?.crupier?.mano?.first()) {
-                        painterResource(id = R.drawable.bocabajo)
-                    } else {
-                        painterResource(id = carta.idDrawable)
-                    }
-                    Image(painter = imagenCarta, contentDescription = null)
+            Spacer(Modifier.weight(1f))
+
+            Row {
+                Button(
+                    onClick = { viewModel.pedirCarta() },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
+                    border = BorderStroke(2.dp, Color.White),
+                    modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 50.dp)
+                ) {
+                    Text("Pedir Carta", color = Color.Black)
+                }
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Button(
+                    onClick = { viewModel.plantarse() },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
+                    border = BorderStroke(2.dp, Color.White),
+                    modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 50.dp)
+                ) {
+                    Text("Plantarse", color = Color.Black)
                 }
             }
 

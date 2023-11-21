@@ -2,6 +2,7 @@ package com.arodmar432p.practica3blackjack
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.util.Log
 
 
 /**
@@ -44,13 +45,19 @@ object Baraja {
                 }
 
                 // Obtiene el identificador del recurso drawable
-                val idDrawable = context.resources.getIdentifier(nombreRecurso, "drawable", context.packageName)
+                val idDrawable =
+                    context.resources.getIdentifier(nombreRecurso, "drawable", context.packageName)
 
                 // Añade la carta a la lista de cartas
-                listaCartas.add(Carta(naipe, palo, puntosMin, puntosMax, idDrawable))
+                if (idDrawable != 0) {
+                    listaCartas.add(Carta(naipe, palo, puntosMin, puntosMax, idDrawable))
+                } else {
+                    Log.e("Baraja", "Recurso no encontrado: $nombreRecurso")
+                }
             }
         }
     }
+
 
     /**
      * Función para barajar las cartas.

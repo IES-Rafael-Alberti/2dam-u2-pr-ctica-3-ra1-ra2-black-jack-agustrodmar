@@ -34,9 +34,10 @@ class JuegoViewModel(application: Application) : AndroidViewModel(application) {
         actualizarEstadoJuego()
     }
     fun pedirCarta() {
-        partida?.pedirCarta()
+        partida?.jugador?.añadirCarta(baraja.dameCarta())
         if (partida?.jugador?.calcularPuntos()!! > 21) {
             // El jugador ha perdido, termina la partida
+            partida?.jugador?.fichas = partida?.jugador?.fichas?.minus(partida?.jugador?.apuesta!!)!!
         } else {
             actualizarEstadoJuego()
         }
@@ -46,11 +47,15 @@ class JuegoViewModel(application: Application) : AndroidViewModel(application) {
         while (partida?.crupier?.calcularPuntos()!! < 17) {
             partida?.crupier?.añadirCarta(baraja.dameCarta())
         }
+        if (partida?.jugador?.calcularPuntos()!! > partida?.crupier?.calcularPuntos()!!) {
+            // El jugador gana
+            partida?.jugador?.fichas = partida?.jugador?.fichas?.plus(partida?.jugador?.apuesta!! * 2)!!
+        } else {
+            // El crupier gana
+            partida?.jugador?.fichas = partida?.jugador?.fichas?.minus(partida?.jugador?.apuesta!!)!!
+        }
         actualizarEstadoJuego()
-
     }
-
-    // Resto del código...
 
     private fun actualizarEstadoJuego() {
         _estadoJuego.value = EstadoJuego(

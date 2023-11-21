@@ -1,6 +1,8 @@
 package com.arodmar432p.practica3blackjack
 
 class Partida(val jugador: Jugador, val crupier: Jugador, private val baraja: Baraja) {
+    var crupierCartasBocaArriba = false
+
     init {
         // Distribución inicial de las cartas
         for (i in 1..2) {
@@ -11,11 +13,23 @@ class Partida(val jugador: Jugador, val crupier: Jugador, private val baraja: Ba
 
     fun pedirCarta() {
         jugador.añadirCarta(baraja.dameCarta())
+        if (jugador.calcularPuntos() > 21) {
+            // El jugador ha perdido, termina la partida
+            jugador.fichas -= jugador.apuesta
+        }
     }
 
     fun plantarse() {
         while (crupier.calcularPuntos() < 17) {
             crupier.añadirCarta(baraja.dameCarta())
+        }
+        crupierCartasBocaArriba = true
+        if (jugador.calcularPuntos() > crupier.calcularPuntos()) {
+            // El jugador gana
+            jugador.fichas += jugador.apuesta * 2
+        } else {
+            // El crupier gana
+            jugador.fichas -= jugador.apuesta
         }
     }
 
@@ -31,11 +45,11 @@ class Partida(val jugador: Jugador, val crupier: Jugador, private val baraja: Ba
             manoDividida.add(baraja.dameCarta())
             jugador.mano.add(baraja.dameCarta())
 
-            // Aquí deberías manejar la nueva mano dividida. Podrías crear un nuevo Jugador para ella.
+            // Aquí debería manejar la nueva mano dividida. Podría crear un nuevo Jugador para ella.
         }
     }
 
-    fun calcularResultado(): String {
+    fun determinarGanador(): String {
         val puntosJugador = jugador.calcularPuntos()
         val puntosCrupier = crupier.calcularPuntos()
 

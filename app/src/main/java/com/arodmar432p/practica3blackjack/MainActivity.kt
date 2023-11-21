@@ -230,7 +230,7 @@ fun JuegoContraMaquina() {
                 }
             }
 
-            Text(text = estadoJuego.partida?.calcularResultado() ?: "", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Text(text = estadoJuego.partida?.determinarGanador() ?: "", fontSize = 20.sp, fontWeight = FontWeight.Bold)
         }
     }
 }

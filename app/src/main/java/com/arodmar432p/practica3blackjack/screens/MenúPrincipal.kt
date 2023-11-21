@@ -48,15 +48,12 @@ fun MainMenu(navController: NavController) {
             modifier = Modifier.padding(16.dp)
         ) {
             Button(
-                onClick = {
-                    // Utiliza el NavController para navegar a la pantalla SeleccionarApuesta
-                    navController.navigate(BlackjackRoutes.SeleccionarApuesta.route)
-                },
+                onClick = { openDialog.value = true },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
                 border = BorderStroke(2.dp, Color.White),
                 modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 50.dp)
             ) {
-                Text("Nueva Partida", color = Color.Black)
+                Text("Empezar Partida", color = Color.Black)
             }
 
             if (openDialog.value) {
@@ -66,13 +63,12 @@ fun MainMenu(navController: NavController) {
                     text = {
                         Column {
                             Button(
-                                onClick = { /* Navega a SeleccionarApuesta */ },
+                                onClick = { /* Contra la máquina */ },
                                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
                                 border = BorderStroke(2.dp, Color.White)
                             ) {
                                 Text("Contra la máquina")
                             }
-
                             Button(
                                 onClick = { /* 2 jugadores */ },
                                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),

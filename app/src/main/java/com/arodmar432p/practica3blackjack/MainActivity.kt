@@ -172,33 +172,26 @@ fun JuegoContraMaquina() {
             Text(text = "BlackJack", fontSize = 30.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(16.dp))
             Spacer(modifier = Modifier.height(24.dp))
 
-            Text(text = "Puntuación: ${estadoJuego.puntuacionJugador}", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            // Muestra las fichas del jugador
+            Text(text = "Fichas: ${estadoJuego.partida?.jugador?.fichas}", fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(24.dp))
 
-            Row {
-                Button(
-                    onClick = { viewModel.pedirCarta() },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
-                    border = BorderStroke(2.dp, Color.White),
-                    modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 50.dp)
-                ) {
-                    Text("Pedir Carta", color = Color.Black)
-                }
-
-                Spacer(modifier = Modifier.width(8.dp))
-
-                Button(
-                    onClick = { viewModel.plantarse() },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
-                    border = BorderStroke(2.dp, Color.White),
-                    modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 50.dp)
-                ) {
-                    Text("Plantarse", color = Color.Black)
+            // Muestra las cartas del crupier boca abajo
+            LazyRow {
+                items(estadoJuego.partida?.crupier?.mano ?: emptyList()) { carta ->
+                    if (estadoJuego.partida?.crupierCartasBocaArriba == true) {
+                        val imagenCarta = painterResource(id = carta.idDrawable)
+                        Image(painter = imagenCarta, contentDescription = null, modifier = Modifier.size(100.dp))
+                    } else {
+                        val imagenCartaBocaAbajo = painterResource(id = R.drawable.bocabajo)
+                        Image(painter = imagenCartaBocaAbajo, contentDescription = null, modifier = Modifier.size(100.dp))
+                    }
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(Modifier.weight(1f))
 
+            // Muestra las cartas del jugador en la parte inferior
             LazyRow {
                 items(estadoJuego.partida?.jugador?.mano ?: emptyList()) { carta ->
                     val imagenCarta = painterResource(id = carta.idDrawable)
@@ -206,7 +199,7 @@ fun JuegoContraMaquina() {
                 }
             }
 
-            Spacer(Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(24.dp))
 
             Row {
                 Button(

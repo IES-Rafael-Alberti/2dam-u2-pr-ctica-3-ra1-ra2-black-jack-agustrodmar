@@ -9,14 +9,19 @@ class JuegoViewModel(application: Application) : AndroidViewModel(application) {
     private val _estadoJuego = MutableStateFlow(EstadoJuego())
     val estadoJuego: StateFlow<EstadoJuego> = _estadoJuego
 
+    var juegoIniciado = false
     private var partida: Partida? = null
 
-    val baraja = Baraja
+    private val baraja = Baraja
     init {
         iniciarPartida()
     }
 
-    private fun iniciarPartida() {
+    fun hacerApuesta(valor: Int) {
+        partida?.jugador?.apuesta = valor
+    }
+
+    fun iniciarPartida() {
         // Crea una nueva baraja de cartas
         baraja.crearBaraja(getApplication())
 

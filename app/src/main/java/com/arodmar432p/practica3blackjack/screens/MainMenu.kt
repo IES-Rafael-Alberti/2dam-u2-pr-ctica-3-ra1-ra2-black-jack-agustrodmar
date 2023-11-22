@@ -31,7 +31,6 @@ import com.arodmar432p.practica3blackjack.ui.theme.Practica3BlackJackTheme
 @Composable
 fun MainMenu(navController: NavController) {
     val openDialog = remember { mutableStateOf(false) }
-    val navController = rememberNavController()
     val background = painterResource(id = R.drawable.tapete)
 
     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
@@ -63,12 +62,13 @@ fun MainMenu(navController: NavController) {
                     text = {
                         Column {
                             Button(
-                                onClick = { /* Contra la máquina */ },
+                                onClick = { navController.navigate(BlackjackRoutes.SeleccionarApuesta.route) },
                                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
                                 border = BorderStroke(2.dp, Color.White)
                             ) {
                                 Text("Contra la máquina")
                             }
+
                             Button(
                                 onClick = { /* 2 jugadores */ },
                                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
@@ -94,7 +94,7 @@ fun MainMenu(navController: NavController) {
             }
 
             Button(
-                onClick = { navController.navigate("Resultados") },
+                onClick = {  },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD4AF37)),
                 border = BorderStroke(2.dp, Color.White),
                 modifier = Modifier.sizeIn(minWidth = 200.dp, minHeight = 50.dp)

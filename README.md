@@ -2,7 +2,7 @@
 2dam-u2-pr-ctica-3-ra1-ra2-black-jack-agustrodmar created by GitHub Classroom
 
 # Blackjack Project
-This project is an implementation of the card game Blackjack, also known as 21. The game is developed in Kotlin and uses the Jetpack Compose framework for the user interface.
+This project is an implementation of the card game Blackjack, as part of my Mobile development studies. The game is developed in Kotlin and uses the Jetpack Compose framework for the user interface.
 
 # Project Structure
 The project consists of several main parts:
@@ -28,7 +28,7 @@ Results: The game keeps track of each player’s wins.
 End of Game Dialogs: At the end of each game, a dialog is displayed announcing the winner.
 
 # Proyecto de Blackjack
-Este proyecto es una implementación del juego de cartas Blackjack, también conocido como 21. El juego está desarrollado en Kotlin y utiliza el marco de trabajo Jetpack Compose para la interfaz de usuario.
+Este proyecto es una implementación del juego de cartas Blackjack, como parte de mis estudios de Programación móvil. El juego está desarrollado en Kotlin y utiliza el framework Jetpack Compose para la interfaz de usuario.
 
 # Estructura del Proyecto
 El proyecto consta de varias partes principales:
